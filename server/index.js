@@ -15,10 +15,19 @@ import newsletterRouter from './src/routes/newsletter.js';
 import shippingRouter from './src/routes/shipping.js';
 import adminRouter from './src/routes/admin.js';
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const distPath = path.resolve(__dirname, '../dist');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
 
 // CORS setup
 const allowedOrigins = [
@@ -99,25 +108,39 @@ app.use('/api/v1', v1Router);
 // Also alias to /api for compatibility
 app.use('/api', v1Router);
 
-// Root route
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to AURELIA Haute Minimal Jewelry API',
-    docs: '/api/v1/health',
-    endpoints: [
-      '/api/v1/products',
-      '/api/v1/categories',
-      '/api/v1/collections',
-      '/api/v1/auth',
-      '/api/v1/orders',
-      '/api/v1/reviews',
-      '/api/v1/coupons',
-      '/api/v1/newsletter',
-      '/api/v1/shipping',
-      '/api/v1/admin/analytics',
-    ],
+// Serve static frontend assets and SPA fallback in production if dist/ exists
+if (fs.existsSync(distPath)) {
+  console.log(`📦 Serving frontend static build from: ${distPath}`);
+  app.use(express.static(distPath));
+
+  // SPA fallback for non-API client routes
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/health')) {
+      return next();
+    }
+    res.sendFile(path.join(distPath, 'index.html'));
   });
-});
+} else {
+  // Fallback root route if frontend dist isn't built
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'Welcome to AURELIA Haute Minimal Jewelry API',
+      docs: '/api/v1/health',
+      endpoints: [
+        '/api/v1/products',
+        '/api/v1/categories',
+        '/api/v1/collections',
+        '/api/v1/auth',
+        '/api/v1/orders',
+        '/api/v1/reviews',
+        '/api/v1/coupons',
+        '/api/v1/newsletter',
+        '/api/v1/shipping',
+        '/api/v1/admin/analytics',
+      ],
+    });
+  });
+}
 
 // 404 Route Handler
 app.use((req, res) => {

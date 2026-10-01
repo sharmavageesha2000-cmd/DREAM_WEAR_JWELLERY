@@ -4,7 +4,7 @@ import { categories as defaultCategories } from '../data/categories';
 import { Product, Order, UserProfile, Address, OrderItem, Review } from '../types';
 import { saveNewOrder, getStoredOrders, updateOrderStatus as updateLocalOrderStatus, deleteOrder as deleteLocalOrder } from './orderStorage';
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? 'http://localhost:5000/api/v1' : '/api/v1');
 export const ENABLE_MOCK_API = import.meta.env.VITE_ENABLE_MOCK_API === 'true';
 
 const TOKEN_KEY = 'aurelia_auth_token';
