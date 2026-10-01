@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #FAF7F2;
+    --color-ivory-light: #FFFDF9;
+    --color-gold: #C5A059;
+    --color-gold-satin: #B88E3A;
+    --color-charcoal: #3D312A;
+    --color-charcoal-dark: #2C2119;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--color-charcoal-dark);
+    background-color: var(--color-ivory);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Luxury Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F5F0EB;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D8C3AA;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B0977B;
+  }
+}
+
+@layer utilities {
+  /* Text gradient for subtle gold highlights */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #E6CA92 50%, #C5A880 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-charcoal-gradient {
+    background: linear-gradient(135deg, #3D3025 0%, #8E6A22 60%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .border-gold-subtle {
+    border-color: rgba(212, 175, 55, 0.25);
+  }
+
+  .bg-glass-luxury {
+    background: rgba(255, 253, 249, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .bg-glass-dark {
+    background: rgba(61, 49, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+/* Image zoom hover effect container */
+.img-zoom-container {
+  overflow: hidden;
+}
+.img-zoom-container img {
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.img-zoom-container:hover img {
+  transform: scale(1.06);
+}
+
+/* Subtle Shimmer for Badges */
+.shimmer-gold {
+  background: linear-gradient(90deg, #D4AF37 0%, #FFF2B2 50%, #D4AF37 100%);
+  background-size: 200% auto;
+  animation: shimmer 4s infinite linear;
+}
+
+/* Instagram Theme Gradients & Glows */
+.instagram-gradient-bg {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram-gradient-text {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.instagram-glow {
+  box-shadow: 0 0 25px rgba(220, 39, 67, 0.35), 0 0 50px rgba(188, 24, 136, 0.2);
+}
+
+.instagram-ring {
+  background: conic-gradient(from 180deg at 50% 50%, #f09433 0deg, #e6683c 60deg, #dc2743 140deg, #cc2366 220deg, #bc1888 300deg, #f09433 360deg);
+}
+
+/* Keyframes for Heart Pop and Dealing Motion */
+@keyframes heartBurst {
+  0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+  50% { transform: scale(1.4) rotate(0deg); opacity: 1; }
+  75% { transform: scale(1.1) rotate(5deg); opacity: 0.9; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.animate-heart-burst {
+  animation: heartBurst 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(220, 39, 67, 0.4)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 16px rgba(220, 39, 67, 0.7)); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Infinite Marquee Animation for Trending Curations */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 34s linear infinite;
+}
+
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
+}
+
+/* Anti-Tarnish Sequential Try-On Keyframes */
+@keyframes flySilverToNeck {
+  0% {
+    top: 25%;
+    left: 79%;
+    transform: translate(-50%, -50%) scale(0.45) rotate(-8deg);
+    opacity: 0;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 56%;
+    left: 28%;
+    transform: translate(-50%, -50%) scale(0.92) rotate(-1deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 15px 25px rgba(255, 255, 255, 0.45));
+  }
+}
+
+@keyframes flyPearlToNeck {
+  0% {
+    top: 74%;
+    left: 79%;
+    transform: translate(-50%, -50%) scale(0.45) rotate(10deg);
+    opacity: 0;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 64%;
+    left: 28%;
+    transform: translate(-50%, -50%) scale(0.95) rotate(-2deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 15px 25px rgba(212, 175, 55, 0.45));
+  }
+}
+
+/* ==========================================================================
+   ORBIT SWARM ANIMATIONS (Loved By Everyday Icons Section)
+   ========================================================================== */
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes orbitCounterRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes orbitCounterRotateReverse {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.orbit-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-track {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orbitSpin 16s linear infinite;
+  transition: animation-duration 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.orbit-track-reverse {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orbitSpinReverse 22s linear infinite;
+  transition: animation-duration 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Accelerate to swarm speed on hover */
+.orbit-stage:hover .orbit-track,
+.group:hover .orbit-track {
+  animation-duration: 3.5s !important;
+}
+
+.orbit-stage:hover .orbit-track-reverse,
+.group:hover .orbit-track-reverse {
+  animation-duration: 4.5s !important;
+}
+
+/* Counter-rotation on satellites so avatars & icons stay upright */
+.orbit-track .orbit-satellite > * {
+  animation: orbitCounterRotate 16s linear infinite;
+  transition: animation-duration 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.orbit-stage:hover .orbit-track .orbit-satellite > *,
+.group:hover .orbit-track .orbit-satellite > * {
+  animation-duration: 3.5s !important;
+}
+
+.orbit-track-reverse .orbit-satellite > * {
+  animation: orbitCounterRotateReverse 22s linear infinite;
+  transition: animation-duration 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.orbit-stage:hover .orbit-track-reverse .orbit-satellite > *,
+.group:hover .orbit-track-reverse .orbit-satellite > * {
+  animation-duration: 4.5s !important;
+}
+
+/* Cinematic Slow Zoom Out Effect */
+@keyframes luxurySlowZoomOut {
+  0% {
+    transform: scale(1.36);
+    filter: brightness(1.04);
+  }
+  35% {
+    filter: brightness(1.02);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.animate-slow-zoom-out {
+  animation: luxurySlowZoomOut 3.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform;
+}
+
+.animate-zoom-out {
+  animation: luxurySlowZoomOut 3.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform;
+}
+
+
+
